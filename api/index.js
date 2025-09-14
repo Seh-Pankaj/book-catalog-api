@@ -1,8 +1,9 @@
 const express = require("express");
-const connectDB = require("./db/connection");
+const connectDB = require("../db/connection");
 const cors = require("cors");
-const bookRoutes = require("./routes/bookRoutes");
-const userRoutes = require("./routes/userRoutes");
+const bookRoutes = require("../routes/bookRoutes");
+const userRoutes = require("../routes/userRoutes");
+const ServerlessHttp = require("serverless-http");
 
 const app = express();
 
@@ -20,3 +21,6 @@ app.listen(PORT, () => {
   console.log("Server running at", PORT);
   connectDB();
 });
+
+module.exports = app;
+module.exports.handler = ServerlessHttp(app);

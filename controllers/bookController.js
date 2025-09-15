@@ -44,6 +44,7 @@ const updateBookRecord = async (req, res) => {
     const updatedBook = await Book.findByIdAndUpdate(id, req.body, {
       new: true,
     });
+    if (!updatedBook) throw Error("Book not found!");
     res.status(202).json(updatedBook);
   } catch (error) {
     res.status(400).json({ error: error.message });

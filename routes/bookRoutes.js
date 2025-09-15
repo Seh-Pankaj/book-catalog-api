@@ -7,6 +7,7 @@ const {
   deleteBookRecord,
 } = require("../controllers/bookController");
 const authUser = require("../middleware/authMiddleware");
+const validateBook = require("../middleware/validateBook");
 
 const router = express.Router();
 
@@ -19,10 +20,10 @@ router.get("/:id", getBookWithId);
 
 // SETTERS
 // POST BOOK DETAILS
-router.post("/", authUser, createBookRecord);
+router.post("/", authUser, validateBook, createBookRecord);
 
 // UPDATE BOOK DETAILS
-router.put("/:id", authUser, updateBookRecord);
+router.put("/:id", authUser, validateBook, updateBookRecord);
 
 // DELETE A BOOK
 router.delete("/:id", authUser, deleteBookRecord);

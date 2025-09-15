@@ -2,17 +2,19 @@ const { body, validationResult } = require("express-validator");
 
 const validateBook = [
   body("title")
+    .trim()
     .notEmpty()
     .withMessage("Book Title cannot be empty")
     .isLength({ min: 3 })
     .withMessage("Title length should be more than 3"),
 
   body("author")
+    .trim()
     .notEmpty()
     .withMessage("Author name cannot be empty")
     .isLength({ min: 3 })
     .withMessage("Author name length should be more than 3"),
-  body("genre").notEmpty().withMessage("Genre cannot be empty"),
+  body("genre").trim().notEmpty().withMessage("Genre cannot be empty"),
 
   body("price")
     .notEmpty()

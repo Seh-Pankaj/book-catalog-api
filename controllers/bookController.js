@@ -57,6 +57,7 @@ const deleteBookRecord = async (req, res) => {
     const id = req.params.id;
     if (!id || id == ":id") throw Error("Id is required!");
     const deletedRecord = await Book.findByIdAndDelete(id);
+    if (!deletedRecord) throw Error("Book Id absent!");
     res.status(204).end();
   } catch (error) {
     res.status(400).json({ error: error.message });

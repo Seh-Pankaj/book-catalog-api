@@ -1,20 +1,24 @@
 const { body, validationResult } = require("express-validator");
 
-const validateBook = [
+const validateBookUpdate = [
   body("title")
+    .optional()
     .notEmpty()
     .withMessage("Book Title cannot be empty")
     .isLength({ min: 3 })
     .withMessage("Title length should be more than 3"),
 
   body("author")
+    .optional()
     .notEmpty()
     .withMessage("Author name cannot be empty")
     .isLength({ min: 3 })
     .withMessage("Author name length should be more than 3"),
-  body("genre").notEmpty().withMessage("Genre cannot be empty"),
+
+  body("genre").optional().notEmpty().withMessage("Genre cannot be empty"),
 
   body("price")
+    .optional()
     .notEmpty()
     .withMessage("Price cannot be empty")
     .isFloat({ min: 10 })
@@ -29,4 +33,4 @@ const validateBook = [
   },
 ];
 
-module.exports = validateBook;
+module.exports = validateBookUpdate;

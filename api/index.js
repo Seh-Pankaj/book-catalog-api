@@ -15,7 +15,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/books", bookRoutes);
 app.use("/api/users", userRoutes);
 
-connectDB();
+// connectDB();
+
+app.listen(PORT, () => {
+  console.log("Server running");
+  connectDB();
+});
 
 module.exports = app;
 module.exports.handler = ServerlessHttp(app);

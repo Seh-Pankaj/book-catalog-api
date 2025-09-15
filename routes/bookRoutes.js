@@ -8,6 +8,7 @@ const {
 } = require("../controllers/bookController");
 const authUser = require("../middleware/authMiddleware");
 const validateBook = require("../middleware/validateBook");
+const validateBookUpdate = require("../middleware/validateBookUpdate");
 
 const router = express.Router();
 
@@ -23,7 +24,7 @@ router.get("/:id", getBookWithId);
 router.post("/", authUser, validateBook, createBookRecord);
 
 // UPDATE BOOK DETAILS
-router.put("/:id", authUser, validateBook, updateBookRecord);
+router.put("/:id", authUser, validateBookUpdate, updateBookRecord);
 
 // DELETE A BOOK
 router.delete("/:id", authUser, deleteBookRecord);

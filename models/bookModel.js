@@ -30,6 +30,11 @@ const bookSchema = mongoose.Schema(
   { timestamps: true }
 );
 
+bookSchema.statics.findDuplicateTitle = async (title) => {
+  const exists = await Book.findOne({ title });
+  if (exists) throw Error("Book already present with same title!");
+};
+
 const Book = new mongoose.model("Book", bookSchema);
 
 module.exports = Book;

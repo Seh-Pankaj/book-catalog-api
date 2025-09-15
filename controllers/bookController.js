@@ -28,6 +28,7 @@ const getBookWithId = async (req, res) => {
 // POST A BOOK RECORD
 const createBookRecord = async (req, res) => {
   try {
+    await Book.findDuplicateTitle(req.body.title);
     const bookRecord = new Book(req.body);
     await bookRecord.save();
     res.status(201).json(bookRecord);
